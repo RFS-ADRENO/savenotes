@@ -179,3 +179,5 @@ build
 # prisma
 prisma/migrations
 prisma/*.db
+
+data
