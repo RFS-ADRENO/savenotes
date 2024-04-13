@@ -1,15 +1,41 @@
 # savenote
 
-To install dependencies:
+Quick note saver web app.
+
+## Installation
+
+Clone the repository and install the dependencies.
 
 ```bash
-bun install
+npm install
 ```
 
-To run:
+## Variables
+
+Create a `.env` file in the root directory of the project.
+
+See the `.env.example` file for the required variables.
+
+## Usage
+
+Start in development mode.
 
 ```bash
-bun run index.ts
+npm run dev
 ```
 
-This project was created using `bun init` in bun v1.1.0. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+Production build.
+
+```bash
+npm run build
+```
+
+Production start.
+
+```bash
+npm start
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
