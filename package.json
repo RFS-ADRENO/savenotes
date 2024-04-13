@@ -22,5 +22,6 @@
   },
   "scripts": {
     "start": "node build/index.js"
-  }
+  },
+  "license": "MIT"
 }
