@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/css/style.css" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <title>savenote</title>
+    </head>
+    <body>
+        <div id="main">
+            <textarea
+                oninput="handleInput(this)"
+                name="content"
+                id="content"
+                autofocus
+                maxlength="10000"
+            ></textarea>
+        </div>
+        <% var data = data; %> <% var id = id; %>
+        <script>
+            const getData = "<%- JSON.stringify(data).slice(1, -1)  %>";
+            const getId = "<%- JSON.stringify(id).slice(1, -1)  %>";
+            document.getElementById("content").value = getData;
+
+            function autoExpand(textarea) {
+                // Reset the height to allow text shrinking
+                textarea.style.height = "auto";
+
+                // Set the height of the textarea to match its scrollHeight
+                textarea.style.height =
+                    (textarea.scrollHeight > window.innerHeight
+                        ? textarea.scrollHeight + 5
+                        : textarea.scrollHeight) + "px";
+            }
+
+            let timer = null;
+            function handleInput(textarea) {
+                autoExpand(textarea);
+                if (timer != null) clearTimeout(timer);
+                timer = setTimeout(() => {
+                    fetch(`/n/${getId}`, {
+                        method: "PUT",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ data: textarea.value }),
+                    });
+
+                    timer = null;
+                }, 300);
+            }
+        </script>
+    </body>
+</html>
